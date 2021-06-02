@@ -7,7 +7,7 @@ namespace DataProcessor.Service
         public void HandleException(string message, Exception exception)
         {
             /* Opportunity to log the exception, generate alerts etc.*/
-            Console.Write(message);
+            Console.WriteLine(message);
            
             throw exception;
         }

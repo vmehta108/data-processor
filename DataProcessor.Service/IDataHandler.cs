@@ -4,5 +4,7 @@
     {
         void ValidateData(string filePath);
         void ProcessData();
+
+        void ExtractData(string filePath);
     }
 }

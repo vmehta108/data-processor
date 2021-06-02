@@ -7,10 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="InvalidTestData_EmptyFile.csv" />
+    <None Remove="InvalidTestData_IncorrectValues.csv" />
+    <None Remove="InvalidTestData_MissingDelimiter.csv" />
     <None Remove="ValidTestData.csv" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="InvalidTestData_EmptyFile.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InvalidTestData_IncorrectValues.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="InvalidTestData_MissingDelimiter.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ValidTestData.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

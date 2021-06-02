@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DataProcessor.Client": {
+      "commandName": "Project",
+      "commandLineArgs": "Input.csv"
+    }
+  }
+}

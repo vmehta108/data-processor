@@ -7,4 +7,18 @@
     <RootNamespace>DataProcessor.Client</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Input.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Input.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataProcessor.Service\DataProcessor.Service.csproj" />
+  </ItemGroup>
+
 </Project>
