@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using CsvHelper;
 
 namespace DataProcessor.Service
@@ -34,8 +35,31 @@ namespace DataProcessor.Service
 
         public void ValidateData(string filePath)
         {
-            throw new System.NotImplementedException();
+            _filePath = filePath;
+
+            using var reader = new StreamReader(_filePath);
+
+            if (reader.EndOfStream) throw new InvalidDataException("Invalid CSV Data: File Empty");
+            int headerCounter = 0;
+            while (!reader.EndOfStream)
+            {
+
+                var line = reader.ReadLine();
+                if (headerCounter == 0) headerCounter = line.Split(',').Length;
+
+                /* Check for delimiters */
+                var foundDelimiter = line.Any(x => x == ',');
+                if (!foundDelimiter) throw new InvalidDataException("Invalid CSV Data: Delimiter Missing");
+
+                /* Check for valid number of delimited values */
+                if (line.Split(',').Length != headerCounter)
+                    throw new InvalidDataException(
+                        "Missing CSV Data - Number of delimited values doesn't match headers.");
+            }
+
+
         }
+
 
         public void ProcessData()
         {
@@ -56,7 +80,7 @@ namespace DataProcessor.Service
                 csvWriter.WriteRecord(outputRecord);
                 csvWriter.NextRecord();
             }
-
+            OutputFile = _outputPath;
         }
     }
 }
