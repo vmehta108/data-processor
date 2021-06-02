@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataExtractor.Client", "DataProcessor.Client\DataExtractor.Client.csproj", "{D7E85334-416C-460E-83C1-511298A0A3CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataProcessor.Client", "DataProcessor.Client\DataProcessor.Client.csproj", "{D7E85334-416C-460E-83C1-511298A0A3CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataExtractor.Service", "DataProcessor.Service\DataExtractor.Service.csproj", "{B9BE914D-8354-421D-BC97-F6FFB1EB6EBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataProcessor.Service", "DataProcessor.Service\DataProcessor.Service.csproj", "{B9BE914D-8354-421D-BC97-F6FFB1EB6EBE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataExtractor.Tests", "DataProcessor.Tests\DataExtractor.Tests.csproj", "{A55F2C1B-D723-4A4E-890B-EEC87342F955}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataProcessor.Tests", "DataProcessor.Tests\DataProcessor.Tests.csproj", "{A55F2C1B-D723-4A4E-890B-EEC87342F955}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
