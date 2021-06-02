@@ -6,7 +6,10 @@ namespace DataProcessor.Service
     {
         public void HandleException(string message, Exception exception)
         {
-            throw new NotImplementedException();
+            /* Opportunity to log the exception, generate alerts etc.*/
+            Console.Write(message);
+           
+            throw exception;
         }
     }
 }
