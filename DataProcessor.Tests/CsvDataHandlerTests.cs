@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using DataProcessor.Service;
 using Moq;
 using NUnit.Framework;
@@ -61,5 +62,68 @@ namespace DataProcessor.Tests
             Assert.AreEqual(3, counter);
         }
 
+
+        [Test]
+        public void CsvDataHandler_Should_Throw_Exception_For_Invalid_CsvFile_NoData()
+        {
+            /* Arrange */
+            Mock<IExceptionHandler> mockExceptionHandlerMock = new Mock<IExceptionHandler>();
+            CsvDataHandler csvDataHandler = new CsvDataHandler(mockExceptionHandlerMock.Object);
+            mockExceptionHandlerMock
+                .Setup(e => e.HandleException(It.IsAny<string>(), It.IsAny<Exception>()))
+                .Throws(new InvalidDataException());
+
+            /* Act */
+            /* Assert */
+            Assert.Throws<InvalidDataException>(() =>
+            {
+                csvDataHandler.ValidateData("InvalidTestData_EmptyFile.csv");
+                csvDataHandler.ProcessData();
+            });
+            
+        }
+
+     
+
+        [Test]
+        public void CsvDataHandler_Should_Throw_Exception_For_Invalid_CsvFile_Incorrect_Values()
+        {
+            /* Arrange */
+            Mock<IExceptionHandler> mockExceptionHandlerMock = new Mock<IExceptionHandler>();
+            CsvDataHandler csvDataHandler = new CsvDataHandler(mockExceptionHandlerMock.Object);
+            mockExceptionHandlerMock
+                .Setup(e => e.HandleException(It.IsAny<string>(), It.IsAny<Exception>()))
+                .Throws(new InvalidDataException());
+
+            /* Act */
+            /* Assert */
+            Assert.Throws<InvalidDataException>(() =>
+            {
+                csvDataHandler.ValidateData("InvalidTestData_IncorrectValues.csv");
+                csvDataHandler.ProcessData();
+            });
+           
+        }
+
+
+        [Test]
+        public void CsvDataHandler_Should_Throw_Exception_For_Invalid_CsvFile_MissingDelimiter()
+        {
+            /* Arrange */
+            Mock<IExceptionHandler> mockExceptionHandlerMock = new Mock<IExceptionHandler>();
+            CsvDataHandler csvDataHandler = new CsvDataHandler(mockExceptionHandlerMock.Object);
+            mockExceptionHandlerMock
+                .Setup(e => e.HandleException(It.IsAny<string>(), It.IsAny<Exception>()))
+                .Throws(new InvalidDataException());
+
+            /* Act */
+            /* Assert */
+            Assert.Throws<InvalidDataException>(() =>
+            {
+                csvDataHandler.ValidateData("InvalidTestData_MissingDelimiter.csv");
+                csvDataHandler.ProcessData();
+            });
+            
+        }
     }
 }
