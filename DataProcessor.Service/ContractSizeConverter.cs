@@ -13,12 +13,14 @@ namespace DataProcessor.Service
 
         public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
-           throw new NotImplementedException();
+            string data = text.Between(BeginSearchString, EndSearchString, StringComparison.InvariantCulture);
+            return data;
         }
 
         public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
         {
-            throw new NotImplementedException();
+            var data = value;
+            return value.ToString();
         }
     }
 }
