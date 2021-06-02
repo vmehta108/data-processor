@@ -20,5 +20,18 @@ namespace DataProcessor.Tests
             Assert.IsNotNull(csvDataHandlerInterface);
 
         }
+
+        [Test]
+        public void ICsvDataHandler_Should_Implement_IDataHandler()
+        {
+            /* Arrange */
+            Mock<IExceptionHandler> mockExceptionHandlerMock = new Mock<IExceptionHandler>();
+            CsvDataHandler csvDataHandler = new CsvDataHandler(mockExceptionHandlerMock.Object);
+
+            var csvDataHandlerInterface = csvDataHandler as ICsvDataHandler;
+
+            Assert.IsNotNull(csvDataHandlerInterface);
+
+        }
     }
 }
