@@ -1,6 +1,6 @@
 ﻿namespace DataProcessor.Service
 {
-    public interface ICsvDataHandler
+    public interface ICsvDataHandler : IDataHandler
     {
         
     }
