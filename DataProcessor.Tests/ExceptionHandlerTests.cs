@@ -1,4 +1,5 @@
-﻿using DataProcessor.Service;
+﻿using System.IO;
+using DataProcessor.Service;
 using NUnit.Framework;
 
 namespace DataProcessor.Tests
@@ -14,6 +15,22 @@ namespace DataProcessor.Tests
             var testInterface =  exceptionHandler as IExceptionHandler;
 
             Assert.IsNotNull(testInterface);
+        }
+
+        
+        [Test]
+        public void ExceptionHandler_Should_Throw_BubbleUp_Exception()
+        {
+            /* Arrange */
+            ExceptionHandler exceptionHandler = new ExceptionHandler();
+           
+
+            /* Act */
+            /* Assert */
+            Assert.Throws<InvalidDataException>(() =>
+            {
+                exceptionHandler.HandleException("Test Message", new InvalidDataException());
+            });
 
         }
     }
