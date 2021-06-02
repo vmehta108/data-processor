@@ -2,6 +2,7 @@
 {
     public interface ICsvDataHandler : IDataHandler
     {
-        
+        string OutputFile { get; }
+        long ReportProcessTime();
     }
 }

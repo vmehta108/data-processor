@@ -2,7 +2,23 @@
 {
     public class CsvDataHandler : ICsvDataHandler
     {
+        #region Private Members
+
         private readonly IExceptionHandler _exceptionHandler;
+
+        #endregion
+
+
+        #region Public Properties
+
+        public string OutputFile { get; private set; }
+
+        public long ReportProcessTime()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        #endregion
 
         public CsvDataHandler(IExceptionHandler exceptionHandler)
         {
