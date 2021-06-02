@@ -19,8 +19,8 @@ namespace DataProcessor.Client
                 /* This would typically be resolved from container */
                 IExceptionHandler exceptionHandler = new ExceptionHandler();
 
-                /* Passing the dependency to CsvDataHandler */
-                CsvDataHandler csvDataHandler = new CsvDataHandler(exceptionHandler);
+                /* Again this would be typically resolved from container. Passing the dependency to CsvDataHandler */
+                IDataHandler csvDataHandler = new CsvDataHandler(exceptionHandler);
 
                 /* Process the data */
                 csvDataHandler.ExtractData(filepath);

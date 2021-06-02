@@ -6,5 +6,8 @@
         void ProcessData();
 
         void ExtractData(string filePath);
+
+        string OutputFile { get; }
+        long ReportProcessTime();
     }
 }
