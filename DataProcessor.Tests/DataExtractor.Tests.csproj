@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>DataProcessor.Tests</AssemblyName>
+    <RootNamespace>DataProcessor.Tests</RootNamespace>
+  </PropertyGroup>
+
+</Project>
