@@ -15,7 +15,7 @@
 
 ##### Dependency Injection Principle- Exception handler is injected to DataHandler.
 ##### Open/Close principle - CsvHelper implements IDataHandler. That way we can introduce as many handlers as we like e.g. for each format type like xml, json etc. And the current application will work seemlessly because we called ExtractData on the type passsed in
-##### Single Responsibility principle - OutputRecordMap is in charged of mapping correct fields while OutputRecord is the model. ContractSizeConverter takes care of parsing ContractSize from AlgoParams
+##### Single Responsibility principle - OutputRecordMap is in charge of mapping correct fields while OutputRecord is the model. ContractSizeConverter takes care of parsing ContractSize from AlgoParams
 ##### Interface Segregation - we have seperated the handler in its repective interfaces for cleaner and modular code
 
 #
