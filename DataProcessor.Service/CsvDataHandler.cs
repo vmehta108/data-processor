@@ -65,10 +65,6 @@ namespace DataProcessor.Service
 
                     if (headerCounter == 0) headerCounter = line.Split(',').Length;
 
-                    /* Check for delimiters */
-                    var foundDelimiter = line.Any(x => x == ',');
-                    if (!foundDelimiter) throw new InvalidDataException("Invalid CSV Data: Delimiter Missing");
-
                     /* Check for valid number of delimited values */
                     if (line.Split(',').Length != headerCounter)
                         throw new InvalidDataException(
@@ -94,34 +90,53 @@ namespace DataProcessor.Service
         /// </summary>
         public void ProcessData()
         {
+           
             try
             {
                 /* First we will read the data as IEnumerable to leverage deferred execution */
-                using var reader = new StreamReader(_filePath);
-                using var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
-                csvReader.Context.RegisterClassMap<OutputRecordMap>();
-                csvReader.Read();
-                IEnumerable<OutputRecord> records = csvReader.GetRecords<OutputRecord>();
+               
+                var readers = ReadData();
 
-                /* The data is now appended to the out put file */
-                using var writer = new StreamWriter(_outputPath);
-                using var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
-                csvWriter.NextRecord();
-                csvWriter.WriteHeader<OutputRecord>();
-                csvWriter.NextRecord();
+                WriteData(readers.Item1);
 
-                foreach (OutputRecord outputRecord in records)
-                {
-                    csvWriter.WriteRecord(outputRecord);
-                    csvWriter.NextRecord();
-                }
 
                 OutputFile = _outputPath;
+
+                readers.Item1?.Dispose();
+                readers.Item2?.Dispose();
             }
             catch (Exception exception)
             {
                 /* Centralised exception handling */
                 _exceptionHandler.HandleException("Failed processing data", exception);
+            }
+            
+        }
+
+        private Tuple<CsvReader,StreamReader> ReadData()
+        {
+            var reader = new StreamReader(_filePath);
+            var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
+            csvReader.Context.RegisterClassMap<OutputRecordMap>();
+            csvReader.Read();
+            return Tuple.Create(csvReader,reader);
+        }
+
+        private void WriteData(CsvReader csvReader)
+        {
+            IEnumerable<OutputRecord> records = csvReader.GetRecords<OutputRecord>();
+
+            /* The data is now appended to the out put file */
+            using var writer = new StreamWriter(_outputPath);
+            CsvWriter csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csvWriter.NextRecord();
+            csvWriter.WriteHeader<OutputRecord>();
+            csvWriter.NextRecord();
+            
+            foreach (OutputRecord outputRecord in records)
+            {
+                csvWriter.WriteRecord(outputRecord);
+                csvWriter.NextRecord();
             }
         }
 

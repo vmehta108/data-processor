@@ -1,17 +1,19 @@
-﻿namespace DataProcessor.Service
+﻿using CsvHelper.Configuration.Attributes;
+
+namespace DataProcessor.Service
 {
     public class OutputRecord
     {
-        [CsvHelper.Configuration.Attributes.Name("ISIN")] 
+        [Name("ISIN")] 
         public string Isin { get; set; }
         
-        [CsvHelper.Configuration.Attributes.Name("CFICode")] 
+        [Name("CFICode")] 
         public string CfiCode { get; set; }
         
-        [CsvHelper.Configuration.Attributes.Name("Venue")] 
+        [Name("Venue")] 
         public string Venue { get; set; }
         
-        [CsvHelper.Configuration.Attributes.Name("Contract Size")] 
+        [Name("Contract Size")] 
         public string AlgoParam { get; set; }   
     }
 }
